@@ -1,4 +1,5 @@
 import React from "react";
+import ChiefsSection from "./components/ChiefsSection";
 import HeroSection from "./components/HeroSection";
 import ImproveSkills from "./components/ImproveSkills";
 import Navbar from "./components/Navbar";
@@ -12,6 +13,7 @@ function App() {
         <HeroSection />
         <ImproveSkills />
         <QuoteSection />
+        <ChiefsSection />
       </div>
     </div>
   );
