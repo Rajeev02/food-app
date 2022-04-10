@@ -1,7 +1,30 @@
 import React, { useState } from "react";
+import Sidebar from "./Sidebar";
+import { faHome, faList, faCog } from "@fortawesome/free-solid-svg-icons";
 
 function Navbar() {
-  const [showSidebar, setShowSidebar] = useState(true);
+  const [showSidebar, setShowSidebar] = useState(false);
+  const links = [
+    {
+      name: "Home",
+      path: "/",
+      icon: faHome,
+    },
+    {
+      name: "Recipes",
+      path: "/recipes",
+      icon: faList,
+    },
+    {
+      name: "Settings",
+      path: "/settings",
+      icon: faCog,
+    },
+  ];
+
+  function closeSidebar() {
+    setShowSidebar(false);
+  }
   return (
     <>
       <div className="navbar container">
@@ -9,14 +32,14 @@ function Navbar() {
           F<span>oo</span>diesHub
         </a>
         <div className="nav-links">
-          <a href="#!">Home</a>
-          <a href="#!">Recipes</a>
-          <a href="#!">Settings</a>
+          {links.map((link) => (
+            <a href={link.path} key={link.name}>
+              {link.name}
+            </a>
+          ))}
         </div>
         <div
-          onClick={() => {
-            setShowSidebar(!showSidebar);
-          }}
+          onClick={() => setShowSidebar(true)}
           className={showSidebar ? "sidebar-btn active" : "sidebar-btn"}
         >
           <div className="bar"></div>
@@ -24,6 +47,7 @@ function Navbar() {
           <div className="bar"></div>
         </div>
       </div>
+      {showSidebar && <Sidebar close={closeSidebar} links={links} />}
     </>
   );
 }
